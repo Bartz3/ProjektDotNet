@@ -24,7 +24,8 @@ namespace Projekt.Models
         public string? lastName { get; set; }
         [EmailAddressAttribute, Display(Name = "E-mail")]
         public string? email { get; set; }
-        [DataType(DataType.PhoneNumber)]
+        [MinLength(8,ErrorMessage ="Numer telefonu jest zbyt krótki"), RegularExpression(@"^-?[0-9][0-9,\.]+$",
+        ErrorMessage = "Numer telefonu powinien zawierać same cyfry!")]
         public string? phoneNumber { get; set; }
         public byte[]? photo{ get; set; }
         public Roles? role { get; set; }

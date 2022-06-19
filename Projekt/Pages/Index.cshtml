@@ -10,7 +10,11 @@
 
     @if(HttpContext.Session.GetString("Nick") != null)
     {
-         <h3>Jesteś zalogowany jako: @HttpContext.Session.GetString("Nick")</h3>    
+        <h3>Jesteś zalogowany jako: @HttpContext.Session.GetString("Nick")</h3>
     }
-         <h3> @TempData["newAccount"]</h3>      
+    else
+    {
+        <h3>Aktualnie nie jesteś zalogowany, zaloguj się aby mieć dostęp do danych na stronie!</h3>
+    }
+             <h3> @TempData["newAccount"]</h3>      
 </div>

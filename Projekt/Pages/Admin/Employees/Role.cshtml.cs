@@ -17,8 +17,8 @@ namespace Projekt.Pages.Employees
         {
             _context = context;
             roles.Add(Roles.Admin);
-            roles.Add(Roles.Hired);
-            roles.Add(Roles.User);
+            roles.Add(Roles.Manager);
+            roles.Add(Roles.Worker);
 
         }
         

@@ -3,8 +3,8 @@
     public enum Roles
     {
         Admin,
-        Hired,
-        User
+        Manager,
+        Worker
     }
 
 }

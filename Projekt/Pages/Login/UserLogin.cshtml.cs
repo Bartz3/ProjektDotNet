@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.Data.SqlClient;
 using Projekt.Models;
+using Projekt.DAL;
 using System.Security.Claims;
 
 namespace Projekt.Pages.Login
@@ -11,15 +12,17 @@ namespace Projekt.Pages.Login
     public class UserLoginModel : PageModel
     {
         private readonly IConfiguration _configuration;
+        IEmployeeDB employeeDB;
         public string Message { get; set; }
         [TempData]
         public string userNick { get; set; }
         [BindProperty]
         
         public Employee user { get; set; }
-        public UserLoginModel(IConfiguration configuration)
+        public UserLoginModel(IConfiguration configuration,IEmployeeDB _employeeDB)
         {
             _configuration = configuration;
+            employeeDB= _employeeDB;
         }
         public IActionResult OnGet()
         {
@@ -37,27 +40,9 @@ namespace Projekt.Pages.Login
             //else
             //    return false;
 
-            List<Employee> siteUsers = new List<Employee>();
+            List<Employee> siteUsers;
 
-            string myCompanyDBcs = _configuration.GetConnectionString("ProjektContext");
-
-            SqlConnection con = new SqlConnection(myCompanyDBcs);
-            string sql = "SELECT * FROM Employee";
-            SqlCommand cmd = new SqlCommand(sql, con);
-            con.Open();
-            SqlDataReader reader = cmd.ExecuteReader();
-            Employee _user;
-
-            while (reader.Read())
-            {
-                _user = new Employee();
-                _user.Id = int.Parse(reader["Id"].ToString());
-                _user.userName = reader["userName"].ToString();
-                _user.password = reader["password"].ToString();
-
-                siteUsers.Add(_user);
-            }
-            reader.Close(); con.Close();
+            siteUsers = employeeDB.List();
 
             foreach (var User in siteUsers)
             {

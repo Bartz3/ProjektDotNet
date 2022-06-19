@@ -2,9 +2,9 @@ using Microsoft.EntityFrameworkCore;
 using Projekt.Models;
 using Microsoft.Extensions.DependencyInjection;
 using Projekt.Data;
-
-
-
+using Projekt.DAL;
+using Microsoft.AspNetCore.Identity;
+using Projekt.Infrastructure;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -23,11 +23,16 @@ builder.Services.AddRazorPages(options => {
     options.Conventions.AuthorizeFolder("/Admin");
 });
 
+builder.Services.AddTransient<IEmployeeDB, EmployeeSqlDB>();
+
 // Add services to the container.
 builder.Services.AddRazorPages();
 builder.Services.AddDbContext<ProjektContext>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("ProjektContext") ?? throw new InvalidOperationException("Connection string 'ProjektContext' not found.")));
 
+
+//builder.Services.AddDefaultIdentity<IdentityUser>()
+//    .AddRoles<IdentityRole>();
 
 builder.Services.AddSession(options => {
     options.IdleTimeout = TimeSpan.FromMinutes(30);
@@ -65,6 +70,8 @@ if (!app.Environment.IsDevelopment())
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
+//app.UseMiddleware<ProjectMiddleware>();
+app.UseProjectMiddleware();
 
 
 app.UseHttpsRedirection();  
