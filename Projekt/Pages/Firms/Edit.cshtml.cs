@@ -13,9 +13,9 @@ namespace Projekt.Pages.Firms
 {
     public class EditModel : PageModel
     {
-        private readonly Projekt.Data.ProjectContext _context;
+        private readonly Projekt.Data.ProjektContext _context;
 
-        public EditModel(Projekt.Data.ProjectContext context)
+        public EditModel(Projekt.Data.ProjektContext context)
         {
             _context = context;
         }

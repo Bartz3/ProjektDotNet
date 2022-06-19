@@ -7,9 +7,9 @@ using Projekt.Models;
 
 namespace Projekt.Data
 {
-    public class ProjectContext : DbContext
+    public class ProjektContext : DbContext
     {
-        public ProjectContext (DbContextOptions<ProjectContext> options)
+        public ProjektContext (DbContextOptions<ProjektContext> options)
             : base(options)
         {
         }

@@ -12,24 +12,28 @@ namespace Projekt.Pages.Employees
 {
     public class CreateModel : PageModel
     {
-        private readonly Projekt.Data.ProjectContext _context;
-        //[BindProperty]
-        //private List<Firm> ListOfFirms =new List<Firm>();
-        public CreateModel(Projekt.Data.ProjectContext context)
+        private readonly Projekt.Data.ProjektContext _context;
+
+        public List<Roles>roles=new List<Roles>();
+
+        public CreateModel(Projekt.Data.ProjektContext context)
         {
             _context = context;
-           // ListOfFirms = _context.Firm.ToList();
+
+            roles.Add(Roles.Admin);
+            roles.Add(Roles.Hired);
+            roles.Add(Roles.User);
         }
 
         public IActionResult OnGet()
         {
+            ViewData["FirmID"] = new SelectList(_context.Set<Firm>(), "Id", "Name");
             return Page();
         }
 
         [BindProperty]
         public Employee Employee { get; set; } = default!;
-       
-
+        
 
         // To protect from overposting attacks, see https://aka.ms/RazorPagesCRUD
         public async Task<IActionResult> OnPostAsync()
@@ -40,6 +44,8 @@ namespace Projekt.Pages.Employees
             }
 
             _context.Employee.Add(Employee);
+            
+            
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");

@@ -12,9 +12,9 @@ namespace Projekt.Pages.Firms
 {
     public class CreateModel : PageModel
     {
-        private readonly Projekt.Data.ProjectContext _context;
+        private readonly Projekt.Data.ProjektContext _context;
 
-        public CreateModel(Projekt.Data.ProjectContext context)
+        public CreateModel(Projekt.Data.ProjektContext context)
         {
             _context = context;
         }

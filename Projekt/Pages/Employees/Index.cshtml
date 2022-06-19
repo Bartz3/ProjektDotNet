@@ -2,7 +2,7 @@
 @model Projekt.Pages.Employees.IndexModel
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Lista pracowników";
 }
 
 <h1>Index</h1>
@@ -15,9 +15,6 @@
         <tr>
             <th>
                 @Html.DisplayNameFor(model => model.Employee[0].userName)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Employee[0].password)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Employee[0].firstName)
@@ -37,6 +34,9 @@
             <th>
                 @Html.DisplayNameFor(model => model.Employee[0].role)
             </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Employee[0].Firm)
+            </th>
             <th></th>
         </tr>
     </thead>
@@ -45,9 +45,6 @@
         <tr>
             <td>
                 @Html.DisplayFor(modelItem => item.userName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.password)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.firstName)
@@ -68,9 +65,13 @@
                 @Html.DisplayFor(modelItem => item.role)
             </td>
             <td>
+                @Html.DisplayFor(modelItem => item.Firm.Description)
+            </td>
+            <td>
                 <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
                 <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a>
+                <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a> |
+                <a asp-page="./Role" asp-route-id="@item.Id">Add Role</a>
             </td>
         </tr>
 }

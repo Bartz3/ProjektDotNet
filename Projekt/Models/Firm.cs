@@ -5,10 +5,10 @@ namespace Projekt.Models
 {
     public class Firm
     {
-        public Firm()
-        {
-            this.Employees = new HashSet<Employee>();
-        }
+        //public Firm()
+        //{
+        //    this.Employees = new HashSet<Employee>();
+        //}
         [Key]
         public int Id { get; set; }
         [Required,MaxLength(100)]
@@ -16,7 +16,7 @@ namespace Projekt.Models
         [Required, MaxLength(500)]
         public string Description { get; set; }
 
-        [ForeignKey("FirmID")]
-        public ICollection<Employee> Employees { get; set; }
+        //[ForeignKey("FirmID")]
+        public ICollection<Employee>? Employees { get; set; }
     }
 }

@@ -5,6 +5,12 @@
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h1 class="display-4">Witamy na stronie głównej </h1>
+    <h2>Zarządzanie personelem</h2>
+
+    @if(HttpContext.Session.GetString("Nick") != null)
+    {
+         <h3>Jesteś zalogowany jako: @HttpContext.Session.GetString("Nick")</h3>    
+    }
+         <h3> @TempData["newAccount"]</h3>      
 </div>

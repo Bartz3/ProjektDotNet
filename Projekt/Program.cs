@@ -25,11 +25,13 @@ builder.Services.AddRazorPages(options => {
 
 // Add services to the container.
 builder.Services.AddRazorPages();
-builder.Services.AddDbContext<ProjectContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("ProjectContext") ?? throw new InvalidOperationException("Connection string 'ProjectContext' not found.")));
+builder.Services.AddDbContext<ProjektContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("ProjektContext") ?? throw new InvalidOperationException("Connection string 'ProjektContext' not found.")));
 
 
-builder.Services.AddSession();     // Dodanie mechanizmu sesji
+builder.Services.AddSession(options => {
+    options.IdleTimeout = TimeSpan.FromMinutes(30);
+});// Dodanie mechanizmu sesji
 builder.Services.AddMemoryCache(); // Dodanie mechanizmu sesji
 
 
@@ -45,7 +47,7 @@ static void CreateDbIfNotExists(IHost host)
         var services = scope.ServiceProvider;
         try
         {
-            var context = services.GetRequiredService<ProjectContext>();
+            var context = services.GetRequiredService<ProjektContext>();
             context.Database.EnsureCreated();
         }
         catch (Exception ex)

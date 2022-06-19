@@ -1,0 +1,24 @@
+﻿@page
+@model Projekt.Pages.Employees.RoleModel
+@{
+    ViewData["Title"] = "Nadaj rolę";
+}
+<h2>Rola dla użytkownika @Model.Employee.userName </h2>
+ <form method="post">
+     <input type="hidden" asp-for="Employee.Id" />
+      <div class="form-group">
+          <label asp-for="Employee.role" class="control-label"></label>
+          <select name="Employee.role">
+           <option value="">Wybierz rolę</option>
+              @for(int i = 0; i <= 2; i++)
+              {                                 
+                  <option value=@Model.roles[i]>@Model.roles[i]</option>                                          
+              }
+              </select
+          <span asp-validation-for="Employee.role" class="text-danger"></span>
+      </div>
+      <br />
+      <div class="form-group">
+          <input type="submit" value="Create" class="btn btn-primary" />
+      </div>
+</form>

@@ -12,9 +12,9 @@ namespace Projekt.Pages.Employees
 {
     public class DetailsModel : PageModel
     {
-        private readonly Projekt.Data.ProjectContext _context;
+        private readonly Projekt.Data.ProjektContext _context;
 
-        public DetailsModel(Projekt.Data.ProjectContext context)
+        public DetailsModel(Projekt.Data.ProjektContext context)
         {
             _context = context;
         }

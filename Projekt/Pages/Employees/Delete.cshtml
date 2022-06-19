@@ -2,7 +2,7 @@
 @model Projekt.Pages.Employees.DeleteModel
 
 @{
-    ViewData["Title"] = "Delete";
+    ViewData["Title"] = "Usuń pracownika";
 }
 
 <h1>Delete</h1>
@@ -59,6 +59,12 @@
         </dt>
         <dd class="col-sm-10">
             @Html.DisplayFor(model => model.Employee.role)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Employee.Firm)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Employee.Firm.Description)
         </dd>
     </dl>
     

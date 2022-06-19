@@ -12,9 +12,9 @@ namespace Projekt.Pages.Employees
 {
     public class IndexModel : PageModel
     {
-        private readonly Projekt.Data.ProjectContext _context;
+        private readonly Projekt.Data.ProjektContext _context;
 
-        public IndexModel(Projekt.Data.ProjectContext context)
+        public IndexModel(Projekt.Data.ProjektContext context)
         {
             _context = context;
         }
@@ -25,7 +25,8 @@ namespace Projekt.Pages.Employees
         {
             if (_context.Employee != null)
             {
-                Employee = await _context.Employee.ToListAsync();
+                Employee = await _context.Employee
+                .Include(e => e.Firm).ToListAsync();
             }
         }
     }

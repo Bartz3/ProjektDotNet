@@ -6,13 +6,10 @@ namespace Projekt.Models
     
     public class Employee
     {
-        public Employee()
-        {
-            this.Firms = new HashSet<Firm>();
-        }
+
         [Key]
         public int Id { get; set; }
-        [Display(Name = "Nazwa użytkownika")]
+        [Display(Name = "Login")]
         public string userName { get; set; }
         [Display(Name = "Hasło")]
         [DataType(DataType.Password)]
@@ -27,19 +24,15 @@ namespace Projekt.Models
         public string? lastName { get; set; }
         [EmailAddressAttribute, Display(Name = "E-mail")]
         public string? email { get; set; }
-
+        [DataType(DataType.PhoneNumber)]
         public string? phoneNumber { get; set; }
         public byte[]? photo{ get; set; }
         public Roles? role { get; set; }
 
-        [ForeignKey("EmployeeID")]
-        public ICollection<Firm> Firms { get; set; }
+        public int? FirmID { get; set; }
+        //[ForeignKey("EmployeeID")]
+        [Display(Name = "Firma")]
+        public Firm? Firm { get; set; }
     }
 
-    public enum Roles
-    {
-        Admin,
-        Hired,
-        User
-    }
 }

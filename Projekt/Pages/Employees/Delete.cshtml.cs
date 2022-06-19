@@ -12,9 +12,9 @@ namespace Projekt.Pages.Employees
 {
     public class DeleteModel : PageModel
     {
-        private readonly Projekt.Data.ProjectContext _context;
+        private readonly Projekt.Data.ProjektContext _context;
 
-        public DeleteModel(Projekt.Data.ProjectContext context)
+        public DeleteModel(Projekt.Data.ProjektContext context)
         {
             _context = context;
         }

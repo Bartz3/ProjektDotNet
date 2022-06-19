@@ -2,7 +2,7 @@
 @model Projekt.Pages.Employees.CreateModel
 
 @{
-    ViewData["Title"] = "Create";
+    ViewData["Title"] = "Dodaj pracownika";
 }
 
 <h1>Create</h1>
@@ -45,24 +45,29 @@
             </div>
             <div class="form-group">
                 <label asp-for="Employee.photo" class="control-label"></label>
-                <input asp-for="Employee.photo" class="form-control" />
+                <input asp-for="Employee.photo" type="image" class="form-control" />
                 <span asp-validation-for="Employee.photo" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Employee.role" class="control-label"></label>
-                <input asp-for="Employee.role" class="form-control" />
+                <select name="Employee.role">
+                 <option value="">Wybierz rolę</option>
+                    @for(int i = 0; i <= 2; i++)
+                    {                                 
+                        <option value=@Model.roles[i]>@Model.roles[i]</option>                                          
+                    }
+                    </select
                 <span asp-validation-for="Employee.role" class="text-danger"></span>
+            </div>
+            <br />
+            <div class="form-group">
+                <label asp-for="Employee.FirmID" class="control-label"></label>
+                <select asp-for="Employee.FirmID" class ="form-control" asp-items="ViewBag.FirmID">
+                    <option value="">-- Wybierz Firmę --</option>
+                </select>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />
-            </div>
-            <div class="form-group">
-                <select name="Firm">
-                     <option value="">Select a number</option>
-                     <option value="1">One</option>
-                     <option value="2">Two</option>
-                     <option value="3">Three</option>
-                </select>
             </div>
         </form>
     </div>
