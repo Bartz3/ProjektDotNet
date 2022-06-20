@@ -67,7 +67,7 @@ namespace Projekt.Pages.Employees
                 }
             }
 
-            return RedirectToPage("/Index");
+            return RedirectToPage("./Index");
         }
 
         private bool EmployeeExists(int id)

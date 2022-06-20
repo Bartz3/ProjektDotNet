@@ -39,5 +39,24 @@ namespace Projekt.Pages.Employees
             }
             return Page();
         }
+
+        public async Task<IActionResult> OnPostAsync(int id)
+        {
+        
+            var cookie = Request.Cookies["superPracownik"];
+            if (cookie == null)
+            {
+                cookie = String.Empty;
+            }
+            cookie += "," + id.ToString();
+            //var employee = await _context.Employee.FirstOrDefaultAsync(m => m.Id == id);
+            //_context.Employee.Add(employee);
+
+            Response.Cookies.Append("superPracownik", cookie);
+
+           // await _context.SaveChangesAsync();
+
+            return RedirectToPage("/Admin/top");
+        }
     }
 }

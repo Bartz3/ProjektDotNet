@@ -68,6 +68,12 @@
     </dl>
 </div>
 <div>
-    <a asp-page="./Edit" asp-route-id="@Model.Employee?.Id">Edit</a> |
+    <form method="post">
+        <input hidden asp-for="Employee.Id" />
+       <div class="form-group">
+                <input type="submit" value="Wyróżnij pracownika" class="btn btn-primary" />
+       </div>
+    </form>
+    <a asp-page="./Edit" asp-route-id="@Model.Employee?.Id">Edytuj</a> |
     <a asp-page="./Index">Back to List</a>
 </div>

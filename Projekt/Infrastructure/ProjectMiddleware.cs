@@ -20,7 +20,7 @@ namespace Projekt.Infrastructure
         {
             string header;
             header = httpContext.Request.Headers["User-Agent"];
-            if (header.ToLower().Contains("chrome"))
+            if (header.ToLower().Contains("asfdaffda"))
             {
                 httpContext.Response.StatusCode = 403;
                 return httpContext.Response.WriteAsync("");
