@@ -10,6 +10,7 @@ namespace Projekt.Pages.Admin
         private readonly Projekt.Data.ProjektContext _context;
         IEmployeeDB _employeeDB;
         private readonly IConfiguration _configuration;
+        
         public List<Employee> superEmployees = new List<Employee>();
 
         public Employee Employee { get; set; } = default!;
@@ -23,9 +24,8 @@ namespace Projekt.Pages.Admin
 
         public void OnGet()
         {
-            superEmployees = _employeeDB.List();
-            //Response.Cookies.Delete("superPracownik");
-            var cookie = Request.Cookies["superPracownik"];
+
+             var cookie = Request.Cookies["superPracownik"];
 
             if (cookie == null)
             {
@@ -33,18 +33,25 @@ namespace Projekt.Pages.Admin
             }
             string[] IDs = cookie.Split(',');
             int pom;
-            Employee employee;
+            Employee employee,pom2;
             foreach (var id in IDs)
             {
+                 bool isInList=false;
                 bool bool2 = int.TryParse(id, out pom);
                 if (!bool2)
                     continue;
-                employee =  _context.Employee.FirstOrDefault(m => m.Id == pom);
-                superEmployees.Add(employee);
+                employee = _context.Employee.FirstOrDefault(m => m.Id == pom);
 
-                //if (employee.firstName!=null || employee.lastName!=null)
-                    
+                if(employee != null)
+                         superEmployees.Add(employee);
             }
+        }
+
+        public void OnPost()
+        {
+            Response.Cookies.Delete("superPracownik");
+
+            //return RedirectToPage("/Index");
         }
     }
 }

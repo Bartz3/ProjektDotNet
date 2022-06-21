@@ -3,7 +3,7 @@
 @{
 	ViewData["Title"]="Pracownicy dnia";
 }
-<h1>Super Pracownicy
+<h1>Wyróżnieni pracownicy
 </h1>
 <div class="container">
 <table class="table table-striped">
@@ -20,12 +20,15 @@
 			
 		</tr> }
 	</tbody>
-@*</table>
-	<form class="form-horizontal" method="post">
+
+</table>
+
+	</div>
+		<form class="form-horizontal" method="post">
 		<div class="form-group"> 
-			<div class="row col-sm-12"> <input type="submit" class="btn btn-primary" value="Usuń zawartość koszyka" /> </div>
+			<input type="submit" class="btn btn-primary" value="Usuń pracowników miesiąca " /> 
 			<br />
-			<div class="row col-sm-12"> <a asp-page="List" class=" btn btn-primary ">Wróć do listy</a> </div>
+			<br />
+			 <a asp-page="/Index" class=" btn btn-primary ">Wróć na stronę główną</a> 
 		</div>      
 	</form>
-</div>*@
