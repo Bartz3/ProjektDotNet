@@ -37,12 +37,19 @@ namespace Projekt.DAL
                 _user.userName = reader["userName"].ToString();
                 _user.password = reader["password"].ToString();
 
+                _user.role = Employee.convertRole((int)(reader["role"]));
+
                 employees.Add(_user);
             }
             reader.Close(); con.Close();
 
             return employees;
         }
+        public Employee getUser(string userName)
+        {
+           return List().FirstOrDefault(x=>x.userName==userName);
+        }
+
 
         public int addNewUser(Employee user)
         {

@@ -2,7 +2,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Projekt.Models;
 using Projekt.DAL;
-
+using Projekt.Infrastructure;
 namespace Projekt.Pages.Admin
 {
     public class topModel : PageModel
@@ -17,6 +17,7 @@ namespace Projekt.Pages.Admin
 
         public topModel(IConfiguration configuration,IEmployeeDB employeeDB,Projekt.Data.ProjektContext context)
         {
+           
             _employeeDB = employeeDB;
             _configuration = configuration;
             _context = context;
@@ -24,7 +25,7 @@ namespace Projekt.Pages.Admin
 
         public void OnGet()
         {
-
+            help.ValidateWorker(HttpContext);
              var cookie = Request.Cookies["superPracownik"];
 
             if (cookie == null)

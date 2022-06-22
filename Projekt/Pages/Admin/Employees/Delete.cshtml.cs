@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Projekt.Data;
 using Projekt.Models;
-
+using Projekt.Infrastructure;
 namespace Projekt.Pages.Employees
 {
     public class DeleteModel : PageModel
@@ -24,6 +24,8 @@ namespace Projekt.Pages.Employees
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
+            if (help.ValidateAdmin(HttpContext) == false) return RedirectToPage("/Index");
+
             if (id == null || _context.Employee == null)
             {
                 return NotFound();
@@ -44,6 +46,8 @@ namespace Projekt.Pages.Employees
 
         public async Task<IActionResult> OnPostAsync(int? id)
         {
+            
+
             if (id == null || _context.Employee == null)
             {
                 return NotFound();

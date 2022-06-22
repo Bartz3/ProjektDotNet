@@ -1,12 +1,12 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using System.Security.Principal;
 
 namespace Projekt.Models
 {
     
     public class Employee
     {
-
         [Key]
         public int Id { get; set; }
         [Display(Name = "Login")]
@@ -24,7 +24,7 @@ namespace Projekt.Models
         public string? lastName { get; set; }
         [EmailAddressAttribute, Display(Name = "E-mail")]
         public string? email { get; set; }
-        [MinLength(8,ErrorMessage ="Numer telefonu jest zbyt krótki"), RegularExpression(@"^-?[0-9][0-9,\.]+$",
+        [MinLength(9,ErrorMessage ="Numer telefonu jest zbyt krótki"), MaxLength(11, ErrorMessage = "Numer telefonu jest zbyt długi"), RegularExpression(@"^-?[0-9][0-9,\.]+$",
         ErrorMessage = "Numer telefonu powinien zawierać same cyfry!")]
         public string? phoneNumber { get; set; }
         public byte[]? photo{ get; set; }
@@ -34,6 +34,17 @@ namespace Projekt.Models
         //[ForeignKey("EmployeeID")]
         [Display(Name = "Firma")]
         public Firm? Firm { get; set; }
+
+        public static Roles convertRole(int role)
+        {
+            if (role == 0) return Roles.Admin;
+            if (role == 1) return Roles.Manager;
+            if (role == 2) return Roles.Worker;
+
+            throw new Exception();
+        }
     }
+
+
 
 }

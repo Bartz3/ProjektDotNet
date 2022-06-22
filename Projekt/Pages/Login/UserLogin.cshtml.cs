@@ -1,9 +1,8 @@
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.Data.SqlClient;
-using Projekt.Models;
 using Projekt.DAL;
+using Projekt.Models;
 using System.Security.Claims;
 
 namespace Projekt.Pages.Login
@@ -17,12 +16,12 @@ namespace Projekt.Pages.Login
         [TempData]
         public string userNick { get; set; }
         [BindProperty]
-        
         public Employee user { get; set; }
-        public UserLoginModel(IConfiguration configuration,IEmployeeDB _employeeDB)
+        public UserLoginModel(IConfiguration configuration, IEmployeeDB _employeeDB)
         {
             _configuration = configuration;
-            employeeDB= _employeeDB;
+            employeeDB = _employeeDB;
+            
         }
         public IActionResult OnGet()
         {
@@ -35,10 +34,6 @@ namespace Projekt.Pages.Login
 
         private bool ValidateUser(Employee UserToValidate)
         {
-            //if ((user.userName == "admin") && (user.password == "abc"))
-            //    return true;
-            //else
-            //    return false;
 
             List<Employee> siteUsers;
 
@@ -65,12 +60,20 @@ namespace Projekt.Pages.Login
         }
         public async Task<IActionResult> OnPostAsync(string returnUrl = null)
         {
+            user = employeeDB.getUser(user.userName);
+
             if (ValidateUser(user))
             {
+
                 var claims = new List<Claim>()
                 {
-                new Claim(ClaimTypes.Name, user.userName)
+                new Claim(ClaimTypes.Name, user.userName),
+
                 };
+                if (user.role != null) claims.Add(new Claim(ClaimTypes.Role, user.role.ToString()));
+                //Admin - 0
+                //Manager - 1
+                //Worker - 2
                 var claimsIdentity = new ClaimsIdentity(claims, "CookieAuthentication");
                 await HttpContext.SignInAsync("CookieAuthentication", new
                ClaimsPrincipal(claimsIdentity));

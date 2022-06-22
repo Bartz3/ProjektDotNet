@@ -16,6 +16,9 @@ namespace Projekt.Pages.Employees
 
         public List<Roles>roles=new List<Roles>();
 
+        [BindProperty]
+        public IFormFile Foto { get; set; }
+
         public CreateModel(Projekt.Data.ProjektContext context)
         {
             _context = context;

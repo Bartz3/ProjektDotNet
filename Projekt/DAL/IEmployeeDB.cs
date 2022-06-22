@@ -6,5 +6,7 @@ namespace Projekt.DAL
     {
         public List<Employee> List();
         public int addNewUser(Employee employee);
+
+        public Employee getUser(string userName);
     }
 }

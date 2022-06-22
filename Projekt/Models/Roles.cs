@@ -2,9 +2,10 @@
 {
     public enum Roles
     {
-        Admin,
-        Manager,
-        Worker
+        Admin,    
+        Manager,  
+        Worker    
     }
 
+    
 }
