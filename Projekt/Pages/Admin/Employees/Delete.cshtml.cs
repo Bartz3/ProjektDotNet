@@ -24,7 +24,7 @@ namespace Projekt.Pages.Employees
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
-            if (help.ValidateAdmin(HttpContext) == false) return RedirectToPage("/Index");
+            if (help.ValidateAdmin(HttpContext) == false) return RedirectToPage("./Index");
 
             if (id == null || _context.Employee == null)
             {

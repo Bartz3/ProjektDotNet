@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Projekt.Data;
 using Projekt.Models;
+using Projekt.Infrastructure;
 
 namespace Projekt.Pages.Employees
 {
@@ -25,6 +26,7 @@ namespace Projekt.Pages.Employees
 
       public async Task<IActionResult> OnGetAsync(int? id)
         {
+            if (help.ValidateAdmin(HttpContext) == false) return RedirectToPage("./Index");
 
             if (id == null || _context.Employee == null)
             {
@@ -44,12 +46,11 @@ namespace Projekt.Pages.Employees
 
         public async Task<IActionResult> OnPostAsync(int? id)
         {
-            //if (!ModelState.IsValid)
-            //{
-            //    return Page();
-            //}
-            Employee.Id = 123;
-            Employee.role = roles[0];
+            Employee = await _context.Employee.FirstOrDefaultAsync(m => m.Id == id);
+            string pom = Request.Form["Employee.role"].ToString();
+
+            Employee.role = Employee.checkRole(pom);
+
            // var entity = _context.Employee.Attach(Employee);
            // entity.Entry(Employee).State = EntityState.Modified;
 
@@ -71,8 +72,10 @@ namespace Projekt.Pages.Employees
                 }
             }
 
-            return RedirectToPage("/Index");
+            return RedirectToPage("./Index");
         }
+
+
 
         private bool EmployeeExists(int id)
         {

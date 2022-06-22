@@ -88,3 +88,17 @@ app.UseAuthorization();
 app.MapRazorPages();
 
 app.Run();
+
+/*
+ CREATE PROCEDURE [dbo].[sp_employeeDisplay]
+AS
+SELECT * FROM Employee
+ 
+CREATE PROCEDURE [dbo].[sp_userAdd]
+	@userName VARCHAR(100),
+	@password VARCHAR(100),
+	@Id int OUTPUT
+AS
+INSERT INTO Employee(userName,password) VALUES(@userName,@password)
+SET @Id= @@IDENTITY
+ */

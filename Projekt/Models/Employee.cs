@@ -43,6 +43,15 @@ namespace Projekt.Models
 
             throw new Exception();
         }
+
+        public static Roles checkRole(string role)
+        {
+            if (role == "Admin") return Roles.Admin;
+            if (role == "Manager") return Roles.Manager;
+            if (role == "Worker") return Roles.Worker;
+
+            throw new Exception();
+        }
     }
 
 

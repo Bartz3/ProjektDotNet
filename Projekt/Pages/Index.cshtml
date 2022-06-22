@@ -7,7 +7,7 @@
 <div class="text-center">
     <h1 class="display-4">Witamy na stronie głównej </h1>
     <h2>Zarządzanie personelem</h2>
-
+    
     @if(HttpContext.Session.GetString("Nick") != null)
     {
         <h3>Jesteś zalogowany jako: @HttpContext.Session.GetString("Nick")</h3>

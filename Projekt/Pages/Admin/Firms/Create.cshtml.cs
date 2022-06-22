@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Projekt.Data;
+using Projekt.Infrastructure;
 using Projekt.Models;
 
 namespace Projekt.Pages.Firms
@@ -21,6 +22,7 @@ namespace Projekt.Pages.Firms
 
         public IActionResult OnGet()
         {
+            if (help.ValidateManager(HttpContext) == false) return RedirectToPage("./Index");
             return Page();
         }
 

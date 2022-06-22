@@ -5,6 +5,7 @@ using Projekt.Models;
 using Microsoft.Data.SqlClient;
 using System.Data;
 using Projekt.DAL;
+using Projekt.Infrastructure;
 
 namespace Projekt.Pages.Register
 {
@@ -29,7 +30,8 @@ namespace Projekt.Pages.Register
         }
         public IActionResult OnGet()
         {
-            if (HttpContext.Session.GetString("Nick") != null)
+            
+            if (HttpContext.Session.GetString("Nick") != null && help.ValidateAdmin(HttpContext) == false)
             {
                 return RedirectToPage("/Index");
             }

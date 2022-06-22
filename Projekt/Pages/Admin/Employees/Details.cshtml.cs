@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using Projekt.Data;
 using Projekt.Models;
+using Projekt.Infrastructure;
 
 namespace Projekt.Pages.Employees
 {
@@ -23,6 +24,7 @@ namespace Projekt.Pages.Employees
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
+            if (help.ValidateManager(HttpContext) == false) return RedirectToPage("./Index");
             if (id == null || _context.Employee == null)
             {
                 return NotFound();

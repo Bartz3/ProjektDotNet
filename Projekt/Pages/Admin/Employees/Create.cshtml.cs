@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Projekt.Data;
 using Projekt.Models;
+using Projekt.Infrastructure;
 
 namespace Projekt.Pages.Employees
 {
@@ -30,6 +31,7 @@ namespace Projekt.Pages.Employees
 
         public IActionResult OnGet()
         {
+            if (help.ValidateManager(HttpContext) == false) return RedirectToPage("/Employees/Index");
             ViewData["FirmID"] = new SelectList(_context.Set<Firm>(), "Id", "Name");
             return Page();
         }

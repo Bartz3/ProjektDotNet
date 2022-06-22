@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Projekt.Data;
+using Projekt.Infrastructure;
 using Projekt.Models;
 
 namespace Projekt.Pages.Firms
@@ -25,6 +26,7 @@ namespace Projekt.Pages.Firms
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
+            if (help.ValidateManager(HttpContext) == false) return RedirectToPage("./Index");
             if (id == null || _context.Firm == null)
             {
                 return NotFound();

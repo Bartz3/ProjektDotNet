@@ -29,9 +29,6 @@
                 @Html.DisplayNameFor(model => model.Employee[0].phoneNumber)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Employee[0].photo)
-            </th>
-            <th>
                 @Html.DisplayNameFor(model => model.Employee[0].role)
             </th>
             <th>
@@ -59,19 +56,16 @@
                 @Html.DisplayFor(modelItem => item.phoneNumber)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.photo)
-            </td>
-            <td>
                 @Html.DisplayFor(modelItem => item.role)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Firm.Description)
             </td>
             <td>
-                <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
-                <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
-                <a asp-page="./Delete" asp-route-id="@item.Id">Delete</a> |
-                <a asp-page="./Role" asp-route-id="@item.Id">Add Role</a>
+                <a asp-page="./Edit" asp-route-id="@item.Id">Edytuj</a> |
+                <a asp-page="./Details" asp-route-id="@item.Id">Szczegóły</a> |
+                <a asp-page="./Delete" asp-route-id="@item.Id">Usuń</a> |
+                <a asp-page="./Role" asp-route-id="@item.Id">Nadaj role</a>
             </td>
         </tr>
 }
